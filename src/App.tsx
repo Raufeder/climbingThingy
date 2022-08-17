@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Navbar from "./app/components/Navbar";
+import Login from "./app/auth/Login";
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [activeUsername, setActiveUsername] = useState("");
+  // const [activeId, setActiveId] = useState(0);
+  // const [activeRouteId, setActiveRouteId] = useState(null);
+  // const [admin, setAdmin] = useState(false);
+  // const [token, setToken] = useState("");
+  // const [accountInfo, setAccountInfo] = useState({});
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+        <Navbar/>
+        <Switch>
+          <Route exact path="/user/login">
+          <Login/>
+          </Route>
+          </Switch>
+        {/* <Route path="/user/login">
+            <Login/>
+          </Route> */}
+    </BrowserRouter>
   );
 }
 
