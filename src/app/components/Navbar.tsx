@@ -6,12 +6,12 @@ type Props = {};
 const Navbar = (props: Props) => {
   const [isOpen, changeIsOpen] = useState(false);
   const toggleNavbar = () => changeIsOpen(!isOpen);
-  const viewWidth = Math.max(
+  const viewWidth: Number = Math.max(
     document.documentElement.clientWidth,
     window.innerWidth || 0
   );
 
-  const isMobile = viewWidth <= 767;
+  const isMobile: Boolean = viewWidth <= 767;
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gradient-to-r from-green-600 to-slate-800 p-6">
