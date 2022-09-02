@@ -18,17 +18,19 @@ const Input: React.FC<Props> = ({
   disabled,
 }) => {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      value={inputValue}
-      onChange={(event) => setInputValue(event.target.value)}
-      className={`w-full border border-gray-350 rounded px-3 py-2 text-sm ${
-        disabled ? "cursor-not-allowed" : ""
-      }`}
-      style={style}
-      disabled={disabled}
-    />
+    <div className="mx-8">
+      <input
+        type={type}
+        placeholder={placeholder}
+        value={inputValue}
+        onChange={(event) => setInputValue(event.target.value)}
+        className={`w-full border border-gray-350 rounded px-3 py-2 text-sm ${
+          disabled ? "cursor-not-allowed" : ""
+        }`}
+        style={style}
+        disabled={disabled}
+      />
+    </div>
   );
 };
 
