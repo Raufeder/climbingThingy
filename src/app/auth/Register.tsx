@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import APIURL from "../helpers/Environment";
+import axios from "axios";
 
 interface Props {}
 
@@ -10,6 +11,30 @@ const Register: React.FC<Props> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+
+  const registerSubmit = async () => {
+    if (confirmPassword !== password) {
+      setPasswordError(true);
+    } else {
+      try {
+        const payload = {
+          user: {
+            username: username,
+            email: email,
+            password: password,
+          },
+        };
+        console.log("payload", payload);
+        const res = await axios.post(`${APIURL}user/register`, payload);
+        console.log(res.data);
+        setPasswordError(false);
+      } catch (e) {
+        setPasswordError(false);
+        console.log("error from register", e);
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -38,6 +63,7 @@ const Register: React.FC<Props> = () => {
         setInputValue={(value) => setPassword(value)}
         disabled={false}
       />
+      {passwordError && <div>Passwords Must Match</div>}
       <div className="my-3">Confirm Password:</div>
       <Input
         type="password"
@@ -49,7 +75,7 @@ const Register: React.FC<Props> = () => {
       <div>
         <Button
           text="Click Me"
-          handleClick={() => console.log("Clicked")}
+          handleClick={() => registerSubmit()}
           outline={true}
         />
       </div>
